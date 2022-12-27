@@ -3,12 +3,15 @@ import { Roboto } from "@next/font/google";
 import HomeBanner from "../components/home/Banner";
 import MainLayout from "../components/layouts/MainLayout";
 import { NextPageWithLayout } from "../common/common";
-
+import useSWR from "swr";
 const roboto = Roboto({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "700"],
 });
-const HomePage: NextPageWithLayout = () => {
+interface HomePageProps {
+  post: string[];
+}
+const HomePage: NextPageWithLayout<HomePageProps> = () => {
   return (
     <>
       <Head>
@@ -23,5 +26,23 @@ const HomePage: NextPageWithLayout = () => {
     </>
   );
 };
-HomePage.Layout = MainLayout;
+
+// export async function getStaticProps() {
+//   const { data, error } = useSWR("https://api.themoviedb.org/3/movie/popular", {
+//     revalidateOnFocus: false,
+//     dedupingInterval: 2000,
+//   });
+//   // const posts = await res.json();
+//   return {
+//     props: {
+//       data,
+//     },
+//     // Next.js will attempt to re-generate the page:
+//     // - When a request comes in
+//     // - At most once every 10 seconds
+//     revalidate: 10, // In seconds
+//   };
+// }
+
+HomePage.getLayout = (page) => <MainLayout>{page}</MainLayout>;
 export default HomePage;
