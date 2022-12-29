@@ -1,11 +1,16 @@
+import { SWRConfig } from "swr";
 import { AppPropsWithLayout } from "../common/common";
-import EmptyLayout from "../components/layouts/EmptyLayout";
-import "../style/globals.css";
+import axiosApi from "../api/axiosApi";
+import "../styles/globals.css";
+import "../styles/home.css";
+
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const Layout = Component.Layout ?? EmptyLayout;
+  const getLayout = Component.getLayout ?? ((page) => page);
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SWRConfig
+      value={{ fetcher: (url) => axiosApi.get(url), shouldRetryOnError: false }}
+    >
+      {getLayout(<Component {...pageProps} />)}
+    </SWRConfig>
   );
 }

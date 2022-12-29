@@ -1,14 +1,22 @@
+import useSWR from "swr";
+import TopRate from "../components/home/TopRate";
+import MainLayout from "../components/layouts/MainLayout";
+import HomeBanner from "../components/home/Banner";
 import Head from "next/head";
 import { Roboto } from "@next/font/google";
-import HomeBanner from "../components/home/Banner";
-import MainLayout from "../components/layouts/MainLayout";
 import { NextPageWithLayout } from "../common/common";
+import { Movie } from "../common/movie";
+import "swiper/css";
 
 const roboto = Roboto({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "700"],
 });
-const HomePage: NextPageWithLayout = () => {
+interface HomePageProps {
+  topMovies: Movie[];
+}
+const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
+  console.log(topMovies);
   return (
     <>
       <Head>
@@ -19,9 +27,26 @@ const HomePage: NextPageWithLayout = () => {
       </Head>
       <main className={roboto.className}>
         <HomeBanner />
+        {/* {topMovies && <TopRate listMovies={topMovies} />} */}
+        <TopRate />
       </main>
     </>
   );
 };
-HomePage.Layout = MainLayout;
+
+// export async function getStaticProps() {
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_API_BASE}/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+//   );
+//   const { results } = await res.json();
+//   const topMovies = results;
+//   return {
+//     props: {
+//       topMovies,
+//     },
+//     revalidate: 10, // In seconds
+//   };
+// }
+
+HomePage.getLayout = (page) => <MainLayout>{page}</MainLayout>;
 export default HomePage;

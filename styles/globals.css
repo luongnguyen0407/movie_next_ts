@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  body {
+    background-color: #0c111b;
+  }
+}
+
+@layer components {
+  .container {
+    max-width: 1180px;
+    padding: 0 10px;
+    margin: 0 auto;
+  }
+  body {
+    @apply overflow-x-hidden;
+    @apply text-white;
+  }
+}
+
+::-webkit-scrollbar {
+  @apply w-2 bg-white/10;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-zinc-500;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  @apply hidden;
+}
