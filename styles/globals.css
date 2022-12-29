@@ -16,67 +16,10 @@
   }
   body {
     @apply overflow-x-hidden;
+    @apply text-white;
   }
 }
 
-@layer utilities {
-  .banner .swiper-slide-shadow-right,
-  .banner .swiper-slide-shadow-left {
-    display: none;
-  }
-  .banner .swiper {
-    width: 100%;
-  }
-  .banner .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 180px;
-    height: 260px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-    filter: blur(2px);
-  }
-  .banner .swiper-slide-active {
-    filter: blur(0px);
-  }
-  .banner .swiper-slide img {
-    display: block;
-    width: 100%;
-  }
-  .banner__overlay {
-    background-image: linear-gradient(
-      77deg,
-      rgba(0, 0, 0, 0.8) 25%,
-      transparent 85%
-    );
-
-    background-color: transparent;
-  }
-
-  .banner .swiper-button-prev,
-  .banner .swiper-button-next {
-    position: absolute;
-    top: -100px;
-    border: 2px solid white;
-    padding: 20px;
-    border-radius: 100rem;
-  }
-  .banner .swiper-button-prev {
-    left: auto;
-    right: 100px;
-  }
-  .banner .swiper-button-next {
-    right: 30px;
-  }
-
-  .banner .swiper-button-prev:after {
-    font-size: 25px;
-    color: white;
-  }
-  .banner .swiper-button-next:after {
-    font-size: 25px;
-    color: white;
-  }
-}
 ::-webkit-scrollbar {
   @apply w-2 bg-white/10;
 }

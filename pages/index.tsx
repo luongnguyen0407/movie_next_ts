@@ -1,17 +1,22 @@
+import useSWR from "swr";
+import TopRate from "../components/home/TopRate";
+import MainLayout from "../components/layouts/MainLayout";
+import HomeBanner from "../components/home/Banner";
 import Head from "next/head";
 import { Roboto } from "@next/font/google";
-import HomeBanner from "../components/home/Banner";
-import MainLayout from "../components/layouts/MainLayout";
 import { NextPageWithLayout } from "../common/common";
-import useSWR from "swr";
+import { Movie } from "../common/movie";
+import "swiper/css";
+
 const roboto = Roboto({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "700"],
 });
 interface HomePageProps {
-  post: string[];
+  topMovies: Movie[];
 }
-const HomePage: NextPageWithLayout<HomePageProps> = () => {
+const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
+  console.log(topMovies);
   return (
     <>
       <Head>
@@ -22,24 +27,23 @@ const HomePage: NextPageWithLayout<HomePageProps> = () => {
       </Head>
       <main className={roboto.className}>
         <HomeBanner />
+        {/* {topMovies && <TopRate listMovies={topMovies} />} */}
+        <TopRate />
       </main>
     </>
   );
 };
 
 // export async function getStaticProps() {
-//   const { data, error } = useSWR("https://api.themoviedb.org/3/movie/popular", {
-//     revalidateOnFocus: false,
-//     dedupingInterval: 2000,
-//   });
-//   // const posts = await res.json();
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_API_BASE}/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+//   );
+//   const { results } = await res.json();
+//   const topMovies = results;
 //   return {
 //     props: {
-//       data,
+//       topMovies,
 //     },
-//     // Next.js will attempt to re-generate the page:
-//     // - When a request comes in
-//     // - At most once every 10 seconds
 //     revalidate: 10, // In seconds
 //   };
 // }
