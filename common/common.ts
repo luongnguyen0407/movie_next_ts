@@ -19,3 +19,11 @@ export interface SwiperProps extends React.ComponentProps<typeof ReactSwiper> {
   isOverflowHidden?: boolean;
   defaultActiveSlide?: number;
 }
+
+export const MILLISECOND_PER_HOUR = 60 * 60 * 1000;
+
+export const bannerVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};

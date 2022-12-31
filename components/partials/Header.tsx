@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "/public/Logo.png";
 import Link from "next/link";
+import _debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 const LIST_MENU = [
   {
@@ -25,7 +26,7 @@ const Header: React.FC = () => {
     const handleScroll = () => {
       setIsTop(window.scrollY === 0);
     };
-    document.addEventListener("scroll", handleScroll);
+    document.addEventListener("scroll", _debounce(handleScroll, 500));
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
