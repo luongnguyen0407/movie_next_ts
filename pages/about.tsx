@@ -1,5 +1,5 @@
 import React from "react";
-import MainLayout from "../components/layouts/MainLayout";
+import MainLayout from "@/components/layouts/MainLayout";
 import { ReactElement } from "react";
 
 const AboutPage = () => {

@@ -1,7 +1,7 @@
 import SwiperGrid from "../shared/SwiperGrid";
 import React from "react";
 import Heading from "../shared/Heading";
-import { Movie } from "../../common/movie";
+import { Movie } from "@/common/movie";
 import "swiper/css/pagination";
 import "swiper/css/grid";
 import "swiper/css/bundle";

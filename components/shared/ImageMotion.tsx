@@ -41,7 +41,7 @@ const ImageMotion: React.FC<ImageProps> = ({
     >
       <Image
         onLoadingComplete={handleLoadingComplete}
-        priority
+        // priority
         {...props}
         sizes="(max-width: 768px) 180px,
               (max-width: 1200px) 180px,

@@ -27,3 +27,7 @@ export const bannerVariants = {
   animate: { opacity: 1 },
   exit: { opacity: 0 },
 };
+
+export const BASE_API = process.env.NEXT_PUBLIC_API_BASE;
+export const KEY_API = process.env.NEXT_PUBLIC_API_KEY;
+export const REVALIDATE_TIME = 60 * 60 * 1000 * 5; //5H

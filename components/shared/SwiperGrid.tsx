@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Movie } from "../../common/movie";
+import { Movie } from "@/common/movie";
 import { Grid, Pagination } from "swiper";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { motion } from "framer-motion";
@@ -76,7 +76,7 @@ const SwiperGrid = ({ data }: SwiperGridProps) => {
                       src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                       alt="movies"
                       fill
-                      priority
+                      loading="lazy"
                       className="object-cover rounded-lg"
                       containerclassname="relative h-full "
                     />

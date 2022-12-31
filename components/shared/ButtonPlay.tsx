@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { bannerVariants } from "../../common/common";
+import { bannerVariants } from "@/common/common";
 import Link from "next/link";
 import { PlayIcon } from "@heroicons/react/24/solid";
 
