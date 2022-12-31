@@ -13,8 +13,8 @@ const ImageNext = ({ src, alt, className = "" }: ImageNextProps) => {
       alt={alt}
       src={src}
       fill
-      unoptimized
       priority
+      sizes="auto"
     />
   );
 };
