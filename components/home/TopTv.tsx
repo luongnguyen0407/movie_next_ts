@@ -7,9 +7,9 @@ import "swiper/css";
 import "swiper/css/bundle";
 import "swiper/css/pagination";
 import { Mousewheel, Pagination } from "swiper";
-import { bannerVariants, MILLISECOND_PER_HOUR } from "../../common/common";
+import { bannerVariants, MILLISECOND_PER_HOUR } from "@/common/common";
 import useSWR from "swr";
-import { Tv } from "../../common/tv";
+import { Tv } from "@/common/tv";
 import ImageNext from "../shared/ImageNext";
 import Heading from "../shared/Heading";
 import Link from "next/link";
@@ -74,7 +74,7 @@ const TopTv = () => {
           </>
           <ButtonPlay
             action={tvActive}
-            src={`/movie/details/${listData[tvActive].id}`}
+            src={`/tv/details/${listData[tvActive].id}`}
             className="-translate-x-2/4 bottom-1/4 left-2/4"
           />
         </div>

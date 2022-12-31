@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Heading from "../shared/Heading";
 import { motion } from "framer-motion";
-import { MILLISECOND_PER_HOUR } from "../../common/common";
+import { MILLISECOND_PER_HOUR } from "@/common/common";
 import useSWR from "swr";
 import SwiperGrid from "../shared/SwiperGrid";
 

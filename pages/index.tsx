@@ -4,18 +4,21 @@ import MainLayout from "../components/layouts/MainLayout";
 import HomeBanner from "../components/home/Banner";
 import Head from "next/head";
 import { Roboto } from "@next/font/google";
-import { NextPageWithLayout } from "../common/common";
+import {
+  BASE_API,
+  KEY_API,
+  NextPageWithLayout,
+  REVALIDATE_TIME,
+} from "../common/common";
 import { Movie } from "../common/movie";
 import "swiper/css";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 
 const TopRate = dynamic(() => import("../components/home/TopRate"));
 const TopTv = dynamic(() => import("../components/home/TopTv"));
 const RecommendToday = dynamic(
-  () => import("../components/home/RecommendToday"),
-  {
-    ssr: false,
-  }
+  () => import("../components/home/RecommendToday")
 );
 
 const roboto = Roboto({
@@ -25,7 +28,6 @@ const roboto = Roboto({
 interface HomePageProps {
   topMovies: Movie[];
 }
-const MILLISECOND_5_HOUR = 60 * 60 * 1000 * 5;
 const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
   return (
     <>
@@ -34,6 +36,11 @@ const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <title>Trang chủ</title>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `history.scrollRestoration = "manual"`,
+          }}
+        />
       </Head>
       <main className={roboto.className}>
         <HomeBanner />
@@ -46,9 +53,7 @@ const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
 };
 
 export async function getStaticProps() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-  );
+  const res = await fetch(`${BASE_API}/movie/top_rated?api_key=${KEY_API}`);
   const { results } = await res.json();
   const topMovies: Movie[] = results;
   return {
@@ -61,7 +66,7 @@ export async function getStaticProps() {
         vote_average: movie.vote_average,
       })),
     },
-    revalidate: MILLISECOND_5_HOUR, // In seconds
+    revalidate: REVALIDATE_TIME, // In seconds
   };
 }
 
