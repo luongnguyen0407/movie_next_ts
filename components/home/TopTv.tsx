@@ -1,20 +1,20 @@
+import useSWR from "swr";
 import React, { useCallback, useState } from "react";
-import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
-import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+import ImageNext from "../shared/ImageNext";
 import ImageMotion from "../shared/ImageMotion";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/bundle";
-import "swiper/css/pagination";
+import Heading from "../shared/Heading";
+import ButtonPlay from "../shared/ButtonPlay";
+import { Tv } from "@/common/tv";
+import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
+import { PlayIcon } from "@heroicons/react/24/solid";
 import { Mousewheel, Pagination } from "swiper";
 import { bannerVariants, MILLISECOND_PER_HOUR } from "@/common/common";
-import useSWR from "swr";
-import { Tv } from "@/common/tv";
-import ImageNext from "../shared/ImageNext";
-import Heading from "../shared/Heading";
-import Link from "next/link";
-import { PlayIcon } from "@heroicons/react/24/solid";
-import ButtonPlay from "../shared/ButtonPlay";
+import { AnimatePresence, motion } from "framer-motion";
+import "swiper/css/pagination";
+import "swiper/css/bundle";
+import "swiper/css";
+// Import Swiper styles
 const TopTv = () => {
   const { data, error } = useSWR(`/tv/top_rated`, {
     revalidateOnFocus: false,
@@ -52,17 +52,11 @@ const TopTv = () => {
           </motion.div>
           <>
             <motion.div
-              variants={{
-                active: {
-                  opacity: 1,
-                  speed: 800,
-                  x: "110%",
-                },
-              }}
+              initial={{ x: "-100vw" }}
               transition={{ ease: [0.33, 1, 0.68, 1], duration: 1 }}
               key={tvActive}
-              animate="active"
-              className="absolute top-1/4 -translate-y-2/4 right-full "
+              animate={{ x: 0 }}
+              className="absolute top-1/4 left-7"
             >
               <p className="overflow-hidden text-xl font-semibold lg:text-3xl max-w-[400px] whitespace-nowrap text-ellipsis">
                 {listData[tvActive].name}

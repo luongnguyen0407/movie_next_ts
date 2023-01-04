@@ -16,7 +16,7 @@ const DetailTvPage = ({ data }: { data: Tv }) => {
   }
 
   return (
-    <div>
+    <div className="h-[900px]">
       <div className="relative">
         <Banner
           className="h-[400px]"
@@ -35,11 +35,22 @@ const DetailTvPage = ({ data }: { data: Tv }) => {
           <ButtonCommon icon>Xem ngay</ButtonCommon>
           <div>
             <Heading>{data.name}</Heading>
-            <h2 className="text-sm md:text-base">{data.overview}</h2>
+            <h2 className="text-sm text-gray-200 md:text-base">
+              {data.overview}
+            </h2>
           </div>
         </div>
       </div>
+      <div className="container grid grid-cols-5">
+        <div className="col-span-1 p-3 bg-slate-700">
+          <p>Thể loại</p>
+          <p>Drama</p>
+        </div>
+        <div className="col-span-3"></div>
+        <div className="col-span-1"></div>
+      </div>
     </div>
+    // https://api.themoviedb.org/3/discover/tv?api_key=e05d4571d77fadcce4caaa76464df83b&with_genres=18
   );
 };
 

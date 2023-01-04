@@ -5,6 +5,7 @@ import MainLayout from "@/components/layouts/MainLayout";
 import Banner from "@/components/movieDetail/BannerImg";
 import Heading from "@/components/shared/Heading";
 import ButtonCommon from "@/components/shared/ButtonCommon";
+import { motion } from "framer-motion";
 import { GetStaticProps } from "next";
 import { Movie } from "@/common/movie";
 import { BASE_API, KEY_API, REVALIDATE_TIME } from "@/common/common";
@@ -18,7 +19,7 @@ const DetailPage = ({ data }: { data: Movie }) => {
     return <p>Loading</p>;
   }
   return (
-    <div>
+    <div className="h-[900px]">
       <div className="relative">
         <Banner
           className="h-[400px]"
@@ -26,19 +27,36 @@ const DetailPage = ({ data }: { data: Movie }) => {
         ></Banner>
       </div>
       <div className="container flex gap-x-10">
-        <Image
-          src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-          alt=""
-          width={200}
-          height={300}
-          className="relative z-10 -mt-20 rounded-sm"
-        />
-        <div className="relative z-10 -mt-14">
-          <ButtonCommon icon>Xem ngay</ButtonCommon>
-          <div>
+        <motion.div
+          initial={{ x: "-100vw" }}
+          animate={{ x: 0 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+        >
+          <Image
+            src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+            alt=""
+            width={200}
+            height={300}
+            className="relative z-10 -mt-20 rounded-sm"
+          />
+        </motion.div>
+        <div className="relative z-10 flex-1 -mt-14">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="inline-block"
+          >
+            <ButtonCommon icon>Xem ngay</ButtonCommon>
+          </motion.div>
+          <motion.div
+            initial={{ x: "100vw" }}
+            animate={{ x: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+          >
             <Heading>{data.title}</Heading>
             <h2 className="text-sm md:text-base">{data.overview}</h2>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
