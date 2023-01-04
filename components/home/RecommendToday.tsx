@@ -74,12 +74,12 @@ const MenuRecommend = ({
           } transition-all cursor-pointer`}
         >
           {item.title}
-          {item.id === contentShow && (
-            <motion.div
-              className="h-1 underline bg-red-400"
-              layoutId="underline"
-            />
-          )}
+          <motion.div
+            className={`${
+              item.id === contentShow ? "h-1 underline bg-red-400" : ""
+            }  `}
+            layoutId="underline"
+          />
         </div>
       ))}
     </div>

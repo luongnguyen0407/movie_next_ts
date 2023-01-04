@@ -1,5 +1,3 @@
-import useSWR from "swr";
-// import TopRate from "../components/home/TopRate";
 import MainLayout from "../components/layouts/MainLayout";
 import HomeBanner from "../components/home/Banner";
 import Head from "next/head";
@@ -13,7 +11,6 @@ import {
 import { Movie } from "../common/movie";
 import "swiper/css";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
 
 const TopRate = dynamic(() => import("../components/home/TopRate"));
 const TopTv = dynamic(() => import("../components/home/TopTv"));
@@ -36,11 +33,6 @@ const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <title>Trang chủ</title>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `history.scrollRestoration = "manual"`,
-          }}
-        />
       </Head>
       <main className={roboto.className}>
         <HomeBanner />
