@@ -31,3 +31,6 @@
 .no-scrollbar::-webkit-scrollbar {
   @apply hidden;
 }
+.example::-webkit-scrollbar {
+  display: none;
+}

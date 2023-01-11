@@ -1,22 +1,24 @@
-import axios from "axios";
-import { useRouter } from "next/router";
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement } from "react";
 import MainLayout from "@/components/layouts/MainLayout";
-import Banner from "@/components/movieDetail/BannerImg";
+import Link from "next/link";
+import Image from "next/image";
 import Heading from "@/components/shared/Heading";
+import Character from "@/components/detail/Character";
 import ButtonCommon from "@/components/shared/ButtonCommon";
+import Banner from "@/components/movieDetail/BannerImg";
+import { useRouter } from "next/router";
+import { Tv } from "@/common/tv";
 import { GetStaticProps } from "next";
 import { BASE_API, KEY_API, REVALIDATE_TIME } from "@/common/common";
-import Image from "next/image";
-import { Tv } from "@/common/tv";
 const DetailTvPage = ({ data }: { data: Tv }) => {
   const router = useRouter();
   if (router.isFallback) {
     return <p>Loading</p>;
   }
+  console.log(data);
 
   return (
-    <div className="h-[900px]">
+    <div>
       <div className="relative">
         <Banner
           className="h-[400px]"
@@ -41,13 +43,18 @@ const DetailTvPage = ({ data }: { data: Tv }) => {
           </div>
         </div>
       </div>
-      <div className="container grid grid-cols-5">
-        <div className="col-span-1 p-3 bg-slate-700">
-          <p>Thể loại</p>
-          <p>Drama</p>
+      <div className="container flex items-center gap-x-3">
+        <div className="w-1/5 ">
+          <div className="flex gap-x-1">
+            Thể Loại : <Link href={"/category"}>Drama</Link>
+          </div>
+          <div>Số tập</div>
+          <div className="mt-5">
+            <Heading className="text-xl">Cast</Heading>
+            <Character idMovie={data.id} />
+          </div>
         </div>
-        <div className="col-span-3"></div>
-        <div className="col-span-1"></div>
+        <div className="flex-1"></div>
       </div>
     </div>
     // https://api.themoviedb.org/3/discover/tv?api_key=e05d4571d77fadcce4caaa76464df83b&with_genres=18
