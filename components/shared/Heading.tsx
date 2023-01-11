@@ -1,7 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 
-const Heading = ({ children }: { children: string }) => {
-  return <h1 className="my-5 text-3xl font-bold">{children}</h1>;
+interface HeadingProps {
+  children: string;
+  className?: string;
+}
+
+const Heading: FC<HeadingProps> = ({ children, className }) => {
+  return <h1 className={`my-5 text-3xl font-bold ${className}`}>{children}</h1>;
 };
 
 export default Heading;
