@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import MainLayout from "@/components/layouts/MainLayout";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,13 +10,23 @@ import { useRouter } from "next/router";
 import { Tv } from "@/common/tv";
 import { GetStaticProps } from "next";
 import { BASE_API, KEY_API, REVALIDATE_TIME } from "@/common/common";
+import Seasons from "@/components/detail/Seasons";
 const DetailTvPage = ({ data }: { data: Tv }) => {
+  const videoView = useRef<HTMLHeadingElement>(null);
+  const [seasonActive, setSeasonActive] = useState(0);
+  const [episodeActive, setEpisodeActive] = useState(1);
   const router = useRouter();
   if (router.isFallback) {
     return <p>Loading</p>;
   }
-  console.log(data);
-
+  const handleScrollView = () => {
+    if (videoView.current) {
+      videoView.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+  const listSeasons = data.seasons.filter((item) => item.name != "Specials");
   return (
     <div>
       <div className="relative">
@@ -31,15 +41,26 @@ const DetailTvPage = ({ data }: { data: Tv }) => {
           alt=""
           width={200}
           height={300}
-          className="relative z-10 -mt-20 rounded-sm"
+          className="relative z-10 -mt-20 rounded-sm max-h-[300px]"
         />
         <div className="relative z-10 -mt-14">
-          <ButtonCommon icon>Xem ngay</ButtonCommon>
+          <ButtonCommon icon onClick={handleScrollView}>
+            Xem ngay
+          </ButtonCommon>
           <div>
             <Heading>{data.name}</Heading>
             <h2 className="text-sm text-gray-200 md:text-base">
               {data.overview}
             </h2>
+          </div>
+          <div>
+            <Seasons
+              data={listSeasons}
+              seasonActive={seasonActive}
+              setSeasonActive={setSeasonActive}
+              episodeActive={episodeActive}
+              setEpisodeActive={setEpisodeActive}
+            ></Seasons>
           </div>
         </div>
       </div>
@@ -54,7 +75,16 @@ const DetailTvPage = ({ data }: { data: Tv }) => {
             <Character idMovie={data.id} />
           </div>
         </div>
-        <div className="flex-1"></div>
+        <div className="flex-1" ref={videoView}>
+          {/* <iframe
+            className="w-full h-[500px]"
+            allowFullScreen
+            src={`https://2embed.org/embed/series?tmdb=${data.id}&s=${listSeasons[seasonActive].season_number}&e=${episodeActive}`}
+          ></iframe> */}
+        </div>
+      </div>
+      <div className="container">
+        <Heading>Phim tương tự</Heading>
       </div>
     </div>
     // https://api.themoviedb.org/3/discover/tv?api_key=e05d4571d77fadcce4caaa76464df83b&with_genres=18

@@ -11,7 +11,6 @@ const Character = ({ idMovie }: { idMovie: string | number }) => {
     dedupingInterval: MILLISECOND_PER_HOUR,
     revalidateIfStale: false,
   });
-  console.log(data);
   if (!data) return null;
   return (
     <div className="max-h-[400px] hover:overflow-y-scroll overflow-hidden cursor-pointer transition-all">

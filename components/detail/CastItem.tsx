@@ -15,6 +15,9 @@ const CastItem: FC<CastItemProps> = ({ srcImg, name, character }) => {
           src={`https://image.tmdb.org/t/p/w500${srcImg}`}
           alt=""
           fill
+          sizes="(min-width: 60em) 24vw,
+                    (min-width: 28em) 45vw,
+                    100vw"
           className="object-cover rounded-full"
         ></Image>
       </div>

@@ -12,6 +12,7 @@ export interface Tv {
   poster_path: string;
   vote_average: number;
   vote_count: number;
+  seasons: seasons[];
 }
 
 export interface ActorTV {
@@ -26,4 +27,14 @@ export interface ActorTV {
   original_name: string;
   popularity: number;
   profile_path: string;
+}
+
+export interface seasons {
+  air_date: string;
+  episode_count: number;
+  id: number;
+  name: string;
+  overview: string;
+  poster_path: string;
+  season_number: number;
 }
