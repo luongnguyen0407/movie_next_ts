@@ -1,7 +1,6 @@
 import { seasons } from "@/common/tv";
 import React, { FC } from "react";
 import { motion } from "framer-motion";
-
 interface SeasonsItemProps {
   name: string | number;
   active?: boolean;
@@ -26,12 +25,12 @@ const Seasons: FC<SeasonsProps> = ({
     setSeasonActive(index);
   };
   return (
-    <div className="my-2">
+    <div className="my-5">
       <div className="flex flex-wrap items-center pr-4 gap-x-3">
-        {data.map((season, index) => (
+        {data.map((seasonItem, index) => (
           <SeasonsItem
-            key={season.id}
-            name={season.name}
+            key={seasonItem.id}
+            name={`Mùa ${index + 1}`}
             active={seasonActive == index}
             onlClick={() => handleSelectSeason(index)}
           />

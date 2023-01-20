@@ -5,7 +5,7 @@ interface HeadingProps {
   className?: string;
 }
 
-const Heading: FC<HeadingProps> = ({ children, className }) => {
+const Heading: FC<HeadingProps> = ({ children, className = "" }) => {
   return <h1 className={`my-5 text-3xl font-bold ${className}`}>{children}</h1>;
 };
 

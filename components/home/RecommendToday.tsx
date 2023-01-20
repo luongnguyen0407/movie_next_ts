@@ -43,7 +43,7 @@ const RecommendToday = () => {
         handleSelectContent={handleSelectContent}
         contentShow={contentShow}
       />
-      <div className="relative text-red-400 recommend">
+      <div className="relative text-red-400 recommend global_slide">
         <SwiperGrid data={listData} />
       </div>
       <div>
