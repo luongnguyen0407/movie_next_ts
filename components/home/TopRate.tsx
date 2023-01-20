@@ -12,7 +12,7 @@ interface TopRateProps {
 
 const TopRate = ({ listMovies }: TopRateProps) => {
   return (
-    <section className="container top-rate">
+    <section className="container top-rate global_slide">
       <Heading>Phim đánh giá cao</Heading>
       <div className="relative text-red-400 ">
         <SwiperGrid data={listMovies} />

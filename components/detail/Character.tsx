@@ -4,9 +4,13 @@ import CastItem from "./CastItem";
 import useSWR from "swr";
 import { ActorTV } from "@/common/tv";
 
-const Character = ({ idMovie }: { idMovie: string | number }) => {
+interface CharacterProps {
+  idMovie: string | number;
+  type: string;
+}
+const Character = ({ idMovie, type }: CharacterProps) => {
   if (!idMovie) return null;
-  const { data, error } = useSWR(`/tv/${idMovie}/credits`, {
+  const { data, error } = useSWR(`/${type}/${idMovie}/credits`, {
     revalidateOnFocus: false,
     dedupingInterval: MILLISECOND_PER_HOUR,
     revalidateIfStale: false,

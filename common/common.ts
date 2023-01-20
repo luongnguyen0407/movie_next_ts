@@ -31,3 +31,7 @@ export const bannerVariants = {
 export const BASE_API = process.env.NEXT_PUBLIC_API_BASE;
 export const KEY_API = process.env.NEXT_PUBLIC_API_KEY;
 export const REVALIDATE_TIME = 60 * 60 * 1000 * 5; //5H
+export type Genres = {
+  id: number;
+  name: string;
+};

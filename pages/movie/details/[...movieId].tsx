@@ -1,62 +1,49 @@
-import axios from "axios";
 import { useRouter } from "next/router";
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement, useRef } from "react";
 import MainLayout from "@/components/layouts/MainLayout";
 import Banner from "@/components/movieDetail/BannerImg";
 import Heading from "@/components/shared/Heading";
-import ButtonCommon from "@/components/shared/ButtonCommon";
-import { motion } from "framer-motion";
 import { GetStaticProps } from "next";
 import { Movie } from "@/common/movie";
 import { BASE_API, KEY_API, REVALIDATE_TIME } from "@/common/common";
-import Image from "next/image";
+import HeaderDetail from "@/components/detail/HeaderDetail";
+import DetailContent from "@/components/detail/DetailContent";
+import Similar from "@/components/detail/Similar";
 const DetailPage = ({ data }: { data: Movie }) => {
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
+  const videoView = useRef<HTMLHeadingElement>(null);
+
+  // useEffect(() => {
+  //   window.history.scrollRestoration = "manual";
+  // }, []);
   const router = useRouter();
   if (router.isFallback) {
     return <p>Loading</p>;
   }
   return (
-    <div className="h-[900px]">
+    <div className="pb-5">
       <div className="relative">
         <Banner
           className="h-[400px]"
           src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
         ></Banner>
       </div>
-      <div className="container flex gap-x-10">
-        <motion.div
-          initial={{ x: "-100vw" }}
-          animate={{ x: 0 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
-        >
-          <Image
-            src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-            alt=""
-            width={200}
-            height={300}
-            className="relative z-10 -mt-20 rounded-sm"
-          />
-        </motion.div>
-        <div className="relative z-10 flex-1 -mt-14">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="inline-block"
-          >
-            <ButtonCommon icon>Xem ngay</ButtonCommon>
-          </motion.div>
-          <motion.div
-            initial={{ x: "100vw" }}
-            animate={{ x: 0 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
-          >
-            <Heading>{data.title}</Heading>
-            <h2 className="text-sm md:text-base">{data.overview}</h2>
-          </motion.div>
+      <div className="container">
+        <HeaderDetail
+          posterPath={data.poster_path}
+          name={data.title}
+          overview={data.overview as string}
+          videoView={videoView}
+        ></HeaderDetail>
+        <DetailContent
+          type="movie"
+          genres={data.genres}
+          id={data.id}
+          movie
+          videoView={videoView}
+        ></DetailContent>
+        <div>
+          <Heading>Phim tương tự</Heading>
+          <Similar id={data.id} type="movie"></Similar>
         </div>
       </div>
     </div>

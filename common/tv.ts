@@ -1,7 +1,10 @@
+import { Genres } from "./common";
+
 export interface Tv {
   backdrop_path: string;
   first_air_date: string;
   genre_ids: number[];
+  genres: Genres[];
   id: number;
   name: string;
   origin_country: string[];
