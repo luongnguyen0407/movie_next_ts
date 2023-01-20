@@ -4,9 +4,9 @@ import Header from "../partials/Header";
 
 const MainLayout = ({ children }: LayoutProps) => {
   return (
-    <div>
+    <div className="overflow-hidden">
       <Header></Header>
-      {children}
+      <section>{children}</section>
     </div>
   );
 };

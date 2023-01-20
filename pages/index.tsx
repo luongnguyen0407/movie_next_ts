@@ -1,12 +1,22 @@
-import useSWR from "swr";
-import TopRate from "../components/home/TopRate";
 import MainLayout from "../components/layouts/MainLayout";
 import HomeBanner from "../components/home/Banner";
 import Head from "next/head";
 import { Roboto } from "@next/font/google";
-import { NextPageWithLayout } from "../common/common";
+import {
+  BASE_API,
+  KEY_API,
+  NextPageWithLayout,
+  REVALIDATE_TIME,
+} from "../common/common";
 import { Movie } from "../common/movie";
 import "swiper/css";
+import dynamic from "next/dynamic";
+
+const TopRate = dynamic(() => import("../components/home/TopRate"));
+const TopTv = dynamic(() => import("../components/home/TopTv"));
+const RecommendToday = dynamic(
+  () => import("../components/home/RecommendToday")
+);
 
 const roboto = Roboto({
   subsets: ["latin", "vietnamese"],
@@ -16,7 +26,6 @@ interface HomePageProps {
   topMovies: Movie[];
 }
 const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
-  console.log(topMovies);
   return (
     <>
       <Head>
@@ -27,26 +36,31 @@ const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
       </Head>
       <main className={roboto.className}>
         <HomeBanner />
-        {/* {topMovies && <TopRate listMovies={topMovies} />} */}
-        <TopRate />
+        {topMovies && <TopRate listMovies={topMovies} />}
+        <RecommendToday />
+        <TopTv />
       </main>
     </>
   );
 };
 
-// export async function getStaticProps() {
-//   const res = await fetch(
-//     `${process.env.NEXT_PUBLIC_API_BASE}/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-//   );
-//   const { results } = await res.json();
-//   const topMovies = results;
-//   return {
-//     props: {
-//       topMovies,
-//     },
-//     revalidate: 10, // In seconds
-//   };
-// }
+export async function getStaticProps() {
+  const res = await fetch(`${BASE_API}/movie/top_rated?api_key=${KEY_API}`);
+  const { results } = await res.json();
+  const topMovies: Movie[] = results;
+  return {
+    props: {
+      topMovies: topMovies.map((movie) => ({
+        id: movie.id,
+        poster_path: movie.poster_path,
+        release_date: movie.release_date,
+        title: movie.title,
+        vote_average: movie.vote_average,
+      })),
+    },
+    revalidate: REVALIDATE_TIME, // In seconds
+  };
+}
 
 HomePage.getLayout = (page) => <MainLayout>{page}</MainLayout>;
 export default HomePage;

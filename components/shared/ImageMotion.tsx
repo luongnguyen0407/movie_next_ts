@@ -39,7 +39,14 @@ const ImageMotion: React.FC<ImageProps> = ({
       animate={isLoaded ? "visible" : "hidden"}
       className={containerclassname}
     >
-      <Image onLoadingComplete={handleLoadingComplete} unoptimized {...props} />
+      <Image
+        onLoadingComplete={handleLoadingComplete}
+        // priority
+        {...props}
+        sizes="(max-width: 768px) 500px,
+              (max-width: 1200px) 1000px,
+              1080px"
+      />
     </motion.div>
   );
 };

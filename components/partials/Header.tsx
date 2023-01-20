@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "/public/Logo.png";
 import Link from "next/link";
+import _debounce from "lodash.debounce";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+
 const LIST_MENU = [
   {
     name: "Home",
@@ -25,7 +28,7 @@ const Header: React.FC = () => {
     const handleScroll = () => {
       setIsTop(window.scrollY === 0);
     };
-    document.addEventListener("scroll", handleScroll);
+    document.addEventListener("scroll", _debounce(handleScroll, 500));
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
@@ -47,7 +50,11 @@ const Header: React.FC = () => {
         ></Image>
         <ul className="flex gap-x-3">
           {LIST_MENU.map((item, index) => (
-            <li key={index}>
+            <motion.li
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
               <Link
                 href={item.path}
                 className={`${
@@ -56,7 +63,7 @@ const Header: React.FC = () => {
               >
                 {item.name}
               </Link>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>

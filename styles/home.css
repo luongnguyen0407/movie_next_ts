@@ -5,6 +5,7 @@
 .banner .swiper {
   width: 100%;
 }
+
 .banner .swiper-slide {
   background-position: center;
   background-size: cover;
@@ -56,33 +57,21 @@
 }
 
 /* slide top-rate */
-.top-rate .swiper {
-  padding-bottom: 40px;
-}
-.top-rate .swiper-pagination {
-  bottom: 0;
-}
-.top-rate .swiper-pagination-bullet {
-  background: aliceblue;
-}
-.top-rate .swiper-pagination-bullet-active {
-  background: red;
-}
+
+.recommend .swiper-slide,
 .top-rate .swiper-slide {
-  text-align: center;
-  font-size: 18px;
   height: 300px;
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+}
+
+/* top */
+
+.top-slide .swiper {
+  height: 100%;
+}
+
+.top-slide .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
