@@ -33,22 +33,28 @@ const ImageMotion: React.FC<ImageProps> = ({
     );
 
   return (
-    <motion.div
-      initial="hidden"
-      variants={variants}
-      animate={isLoaded ? "visible" : "hidden"}
-      className={containerclassname}
-    >
-      <Image
-        onLoadingComplete={handleLoadingComplete}
-        // priority
-        {...props}
-        sizes="(max-width: 768px) 500px,
-              (max-width: 1200px) 1000px,
-              1080px"
-      />
-    </motion.div>
+    <>
+      {!isLoaded && <ImageMotionLoading />}
+      <motion.div
+        initial="hidden"
+        variants={variants}
+        animate={isLoaded ? "visible" : "hidden"}
+        className={`${containerclassname} ${!isLoaded ? "hidden" : ""}`}
+      >
+        <Image
+          onLoadingComplete={handleLoadingComplete}
+          // priority
+          {...props}
+          sizes="(max-width: 768px) 500px,
+                (max-width: 1200px) 1000px,
+                1080px"
+        />
+      </motion.div>
+    </>
   );
 };
 
+const ImageMotionLoading = () => {
+  return <div className="w-[176px] h-[245px] skeleton"></div>;
+};
 export default React.memo(ImageMotion);

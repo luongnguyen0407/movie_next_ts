@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Roboto } from "@next/font/google";
 import {
   BASE_API,
+  CombineType,
   KEY_API,
   NextPageWithLayout,
   REVALIDATE_TIME,
@@ -23,7 +24,7 @@ const roboto = Roboto({
   weight: ["400", "500", "700"],
 });
 interface HomePageProps {
-  topMovies: Movie[];
+  topMovies: CombineType[];
 }
 const HomePage: NextPageWithLayout<HomePageProps> = ({ topMovies }) => {
   return (
@@ -50,7 +51,7 @@ export async function getStaticProps() {
   const topMovies: Movie[] = results;
   return {
     props: {
-      topMovies: topMovies.map((movie) => ({
+      topMovies: topMovies.slice(0, 16).map((movie) => ({
         id: movie.id,
         poster_path: movie.poster_path,
         release_date: movie.release_date,
