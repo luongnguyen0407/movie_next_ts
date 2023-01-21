@@ -35,7 +35,7 @@ const RecommendToday = () => {
   }, []);
 
   if (!data) return <p className="h-[500px]">Loading</p>;
-  const listData = data.results;
+  const listData = data.results.slice(0, 16);
   return (
     <div className="container">
       <Heading>Xem gì hôm nay</Heading>

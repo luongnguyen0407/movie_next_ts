@@ -4,9 +4,10 @@ import { Movie } from "@/common/movie";
 import { Grid, Pagination } from "swiper";
 import Link from "next/link";
 import ItemSlide from "./ItemSlide";
+import { CombineType } from "@/common/common";
 
 interface SwiperGridProps {
-  data: Movie[];
+  data: CombineType[];
 }
 
 const ROW_SLIDE = 2;
@@ -68,8 +69,8 @@ const SwiperGrid = ({ data }: SwiperGridProps) => {
               >
                 <ItemSlide
                   item={movie}
-                  date={movie.release_date}
-                  name={movie.title}
+                  date={movie.release_date || movie.first_air_date}
+                  name={movie.title || movie.name}
                 ></ItemSlide>
               </Link>
             </SwiperSlide>
