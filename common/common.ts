@@ -2,6 +2,8 @@ import { NextPage } from "next";
 import { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
 import { Swiper as ReactSwiper } from "swiper/react";
+import { Movie } from "./movie";
+import { Tv } from "./tv";
 export type LayoutProps = {
   children: ReactNode;
 };
@@ -35,3 +37,4 @@ export type Genres = {
   id: number;
   name: string;
 };
+export type CombineType = Movie & Tv;
