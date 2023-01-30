@@ -24,7 +24,7 @@ const BannerImg = ({
       className={`relative w-full overflow-hidden ${className}`}
       key={action}
     >
-      <div className="absolute inset-0 z-30 flex flex-col justify-center hidden px-4 banner__overlay md:px-12 sm:block"></div>
+      <div className="absolute inset-0 z-30 flex-col justify-center hidden px-4 banner__overlay md:px-12 sm:flex"></div>
       {/* <BannerMotion/> */}
       <BannerMotion
         src={src}
