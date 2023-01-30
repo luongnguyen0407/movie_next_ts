@@ -26,9 +26,9 @@ const HeaderDetail: FC<HeaderDetailProps> = ({
     }
   };
   return (
-    <div className="flex gap-x-10">
+    <div className="flex flex-col items-center text-center gap-x-10 sm:flex-row sm:text-start">
       <PosterAnimation src={posterPath}></PosterAnimation>
-      <div className="relative z-10 flex-1 -mt-14">
+      <div className="relative z-10 flex-1 sm:-mt-14">
         <ButtonCommon icon onClick={handleScrollView}>
           Xem ngay
         </ButtonCommon>

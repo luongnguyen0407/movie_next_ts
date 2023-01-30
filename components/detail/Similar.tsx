@@ -32,12 +32,29 @@ const Similar: FC<SimilarProps> = ({ type, id }) => {
         }}
         modules={[Pagination]}
         className="mySwiper"
+        breakpoints={{
+          1280: {
+            slidesPerView: 6,
+          },
+          1024: {
+            slidesPerView: 5,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+          640: {
+            slidesPerView: 3,
+          },
+          0: {
+            slidesPerView: 2,
+          },
+        }}
       >
-        {data.results.map((item: Movie & Tv) => (
+        {data.results.slice(0, 10).map((item: Movie & Tv) => (
           <SwiperSlide key={item.id}>
             <Link
               href={`/${type}/details/${item.id}`}
-              className="w-full select-none h-[400px] relative z-50"
+              className="w-full select-none h-[300px] relative z-50"
               passHref
             >
               <ItemSlide

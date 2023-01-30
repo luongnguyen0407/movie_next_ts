@@ -2,6 +2,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { bannerVariants } from "@/common/common";
 import Image from "next/image";
+import BannerMotion from "../shared/BannerMotion";
 
 interface BannerImgProps {
   src: string;
@@ -23,8 +24,9 @@ const BannerImg = ({
       className={`relative w-full overflow-hidden ${className}`}
       key={action}
     >
-      <div className="absolute inset-0 z-30 flex flex-col justify-center px-4 banner__overlay md:px-12"></div>
-      <Image
+      <div className="absolute inset-0 z-30 flex flex-col justify-center hidden px-4 banner__overlay md:px-12 sm:block"></div>
+      {/* <BannerMotion/> */}
+      <BannerMotion
         src={src}
         alt="banner"
         fill
