@@ -11,10 +11,6 @@ import DetailContent from "@/components/detail/DetailContent";
 import Similar from "@/components/detail/Similar";
 const DetailPage = ({ data }: { data: Movie }) => {
   const videoView = useRef<HTMLHeadingElement>(null);
-
-  // useEffect(() => {
-  //   window.history.scrollRestoration = "manual";
-  // }, []);
   const router = useRouter();
   if (router.isFallback) {
     return <p>Loading</p>;

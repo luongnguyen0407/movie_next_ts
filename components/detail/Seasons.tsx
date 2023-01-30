@@ -26,7 +26,7 @@ const Seasons: FC<SeasonsProps> = ({
   };
   return (
     <div className="my-5">
-      <div className="flex flex-wrap items-center pr-4 gap-x-3">
+      <div className="flex flex-wrap items-center justify-center pr-4 sm:justify-start gap-x-3">
         {data.map((seasonItem, index) => (
           <SeasonsItem
             key={seasonItem.id}
@@ -37,7 +37,7 @@ const Seasons: FC<SeasonsProps> = ({
         ))}
       </div>
       <div className="my-3">Tập</div>
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
         {new Array(data[seasonActive].episode_count).fill(0).map((i, index) => (
           <SeasonsItem
             key={index}

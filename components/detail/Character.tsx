@@ -17,7 +17,7 @@ const Character = ({ idMovie, type }: CharacterProps) => {
   });
   if (!data) return null;
   return (
-    <div className="max-h-[400px] hover:overflow-y-scroll overflow-hidden cursor-pointer transition-all">
+    <div className="max-h-[400px] md:overflow-y-scroll overflow-x-scroll md:overflow-x-auto no-scrollbar  cursor-pointer transition-all flex gap-x-3 md:block">
       {data &&
         data.cast.map((actor: ActorTV) => (
           <CastItem
