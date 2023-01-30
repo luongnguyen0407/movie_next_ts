@@ -16,7 +16,7 @@ interface ImageProps extends NextImageProps {
   containerclassname?: string;
 }
 
-const ImageMotion: React.FC<ImageProps> = ({
+const BannerMotion: React.FC<ImageProps> = ({
   onLoadingComplete,
   containerclassname,
   ...props
@@ -34,7 +34,7 @@ const ImageMotion: React.FC<ImageProps> = ({
 
   return (
     <>
-      {!isLoaded && <ImageMotionLoading />}
+      {isLoaded && <BannerMotionLoading />}
       <motion.div
         initial="hidden"
         variants={variants}
@@ -54,9 +54,9 @@ const ImageMotion: React.FC<ImageProps> = ({
   );
 };
 
-const ImageMotionLoading = () => {
+const BannerMotionLoading = () => {
   return (
-    <div className="w-full h-full max-h-[245px] skeleton rounded-md"></div>
+    <div className="w-full h-full max-h-[450px] skeleton rounded-md"></div>
   );
 };
-export default React.memo(ImageMotion);
+export default React.memo(BannerMotion);

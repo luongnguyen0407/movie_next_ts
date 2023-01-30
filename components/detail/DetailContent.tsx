@@ -25,10 +25,10 @@ const DetailContent: FC<DetailContent> = ({
     ? `/movie?tmdb=${id}`
     : `/series?tmdb=${id}&s=${seasonNumber}&e=${episodeActive}`;
   return (
-    <div className="flex items-center mt-3 gap-x-3">
-      <div className="w-1/5 ">
-        <div>
-          <p>Thể Loại :</p>
+    <>
+      <div>
+        <div className="flex sm:block">
+          <p>Thể Loại: </p>
           <>
             {genres.map((genre) => (
               <Link href={`/category/${genre.id}`} key={genre.id}>
@@ -37,19 +37,23 @@ const DetailContent: FC<DetailContent> = ({
             ))}
           </>
         </div>
-        <div className="mt-5">
-          <Heading className="text-xl">Cast</Heading>
-          <Character type={type} idMovie={id} />
+      </div>
+      <div className="flex flex-col mt-3 md:items-center md:flex-row gap-x-3">
+        <div className="md:w-1/5">
+          <div className="mt-5">
+            <Heading className="text-xl">Diễn viên</Heading>
+            <Character type={type} idMovie={id} />
+          </div>
+        </div>
+        <div className="mt-4 sm:flex-1 sm:mt-0" ref={videoView}>
+          <iframe
+            className="w-full h-[500px]"
+            allowFullScreen
+            src={`https://2embed.org/embed${iframeUrl}`}
+          ></iframe>
         </div>
       </div>
-      <div className="flex-1" ref={videoView}>
-        <iframe
-          className="w-full h-[500px]"
-          allowFullScreen
-          src={`https://2embed.org/embed${iframeUrl}`}
-        ></iframe>
-      </div>
-    </div>
+    </>
   );
 };
 
